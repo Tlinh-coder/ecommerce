@@ -1,0 +1,142 @@
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  
+    width: 100%;
+  
+    background: rgba(255, 255, 255, 0.9);
+  
+    backdrop-filter: blur(12px);
+  
+    border-bottom: 1px solid #eeeeee;
+  }
+  
+  .header-container {
+    max-width: 1400px;
+    height: 72px;
+  
+    margin: 0 auto;
+    padding: 0 40px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  
+  /* =========================
+     LOGO
+  ========================= */
+  
+  .logo {
+    font-size: 24px;
+    font-weight: 700;
+  
+    color: #111;
+  
+    text-decoration: none;
+  
+    letter-spacing: -1px;
+  }
+  
+  
+  /* =========================
+     NAV
+  ========================= */
+  
+  .header-nav {
+    display: flex;
+    gap: 35px;
+  }
+  
+  .nav-link {
+    position: relative;
+  
+    color: #555;
+  
+    font-size: 14px;
+  
+    text-decoration: none;
+  
+    transition: color 0.25s;
+  }
+  
+  .nav-link:hover {
+    color: #111;
+  }
+  
+  
+  /* =========================
+     ACTIONS
+  ========================= */
+  
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .header-icon {
+    width: 40px;
+    height: 40px;
+  
+    border: none;
+    border-radius: 50%;
+  
+    background: #f4f4f2;
+  
+    cursor: pointer;
+  
+    font-size: 16px;
+  
+    transition: 0.25s;
+  }
+  
+  .header-icon:hover {
+    background: #e8e8e5;
+  
+    transform: translateY(-2px);
+  }
+  
+  .login-button {
+    margin-left: 8px;
+  
+    padding: 11px 18px;
+  
+    border-radius: 25px;
+  
+    background: #111;
+    color: white;
+  
+    font-size: 13px;
+  
+    text-decoration: none;
+  
+    transition: 0.25s;
+  }
+  
+  .login-button:hover {
+    background: #333;
+  }
+  
+  
+  /* =========================
+     MOBILE
+  ========================= */
+  
+  @media (max-width: 800px) {
+  
+    .header-container {
+      padding: 0 20px;
+    }
+  
+    .header-nav {
+      display: none;
+    }
+  
+    .login-button {
+      display: none;
+    }
+  
+  }
