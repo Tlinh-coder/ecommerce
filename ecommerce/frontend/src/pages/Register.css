@@ -1,0 +1,133 @@
+.register-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 85vh;
+    background-color: #fafafa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+  }
+  
+  .register-box {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  .register-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 8px;
+  }
+  
+  .register-subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 30px;
+  }
+  
+  .register-form {
+    text-align: left;
+  }
+  
+  .input-group {
+    margin-bottom: 18px;
+  }
+  
+  .input-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 6px;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.25s ease;
+    box-sizing: border-box;
+  }
+  
+  .input-group input:focus {
+    border-color: #111;
+  }
+  
+  .password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .toggle-password {
+    position: absolute;
+    right: 12px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0;
+  }
+  
+  /* Thẻ thông báo trạng thái */
+  .alert-message {
+    font-size: 13px;
+    margin-bottom: 15px;
+    padding: 8px;
+    border-radius: 6px;
+    font-weight: 500;
+  }
+  .alert-message.error {
+    color: #d32f2f;
+    background-color: #ffebee;
+  }
+  .alert-message.success {
+    color: #388e3c;
+    background-color: #e8f5e9;
+  }
+  
+  /* Nút Đăng ký lớn giống hệt các nút trước */
+  .submit-register-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #111;
+    color: #fff;
+    border: 1px solid #111;
+    border-radius: 25px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: all 0.25s ease;
+  }
+  
+  .submit-register-btn:hover {
+    background-color: #fff;
+    color: #111;
+  }
+  
+  .redirect-login {
+    margin-top: 25px;
+    font-size: 13px;
+    color: #666;
+  }
+  
+  .redirect-login a {
+    color: #111;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  
+  .redirect-login a:hover {
+    text-decoration: underline;
+  }
+  

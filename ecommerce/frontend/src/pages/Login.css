@@ -1,0 +1,139 @@
+/* Bao phủ toàn bộ màn hình, căn giữa form */
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; /* Cân đối khoảng cách giữa Header và Footer */
+    background-color: #fafafa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+  }
+  
+  /* Khung hộp đăng nhập */
+  .login-box {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06); /* Bóng đổ rất nhẹ, sang trọng */
+    width: 100%;
+    max-width: 400px; /* Độ rộng vừa vặn cho form */
+    text-align: center;
+  }
+  
+  .login-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 8px;
+  }
+  
+  .login-subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 30px;
+  }
+  
+  /* Cấu hình các ô nhập liệu */
+  .login-form {
+    text-align: left;
+  }
+  
+  .input-group {
+    margin-bottom: 20px;
+  }
+  
+  .input-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 6px;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.25s ease;
+    box-sizing: border-box;
+  }
+  
+  /* Hiệu ứng khi nhấn chuột vào ô nhập liệu */
+  .input-group input:focus {
+    border-color: #111; /* Đổi sang viền đen đồng bộ với style shop */
+  }
+  
+  /* Xử lý hàng Mật khẩu + Quên mật khẩu */
+  .label-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .forgot-password {
+    font-size: 12px;
+    color: #666;
+    text-decoration: none;
+  }
+  .forgot-password:hover {
+    text-decoration: underline;
+    color: #111;
+  }
+  
+  /* Ẩn hiện mật khẩu nằm trong ô input */
+  .password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .toggle-password {
+    position: absolute;
+    right: 12px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0;
+  }
+  
+  /* Nút Đăng nhập lớn */
+  .submit-login-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #111; /* Màu đen chủ đạo */
+    color: #fff;
+    border: 1px solid #111;
+    border-radius: 25px; /* Bo tròn giống nút Header */
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.25s ease;
+  }
+  
+  .submit-login-btn:hover {
+    background-color: #fff;
+    color: #111; /* Di chuột đổi màu nghịch đảo cực chất */
+  }
+  
+  /* Dòng chuyển hướng Đăng ký cuối form */
+  .redirect-register {
+    margin-top: 25px;
+    font-size: 13px;
+    color: #666;
+  }
+  
+  .redirect-register a {
+    color: #111;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  
+  .redirect-register a:hover {
+    text-decoration: underline;
+  }
+  

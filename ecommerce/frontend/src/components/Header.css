@@ -99,28 +99,32 @@
     transform: translateY(-2px);
   }
   
-  .login-button {
-    margin-left: 8px;
+  /* Trạng thái bình thường: Ép cả 2 nút bằng nhau tuyệt đối về cả chiều cao lẫn chiều rộng */
+.login-button, .register-button {
+  margin-left: 8px;
+  padding: 11px 0;          /* ⚡ ĐỔI THÀNH 0: Không dùng padding trái/phải nữa để min-width tự quyết định */
   
-    padding: 11px 18px;
+  min-width: 110px;         /* ⚡ CỐ ĐỊNH CHIỀU RỘNG: Bạn có thể tăng lên 120px nếu muốn nút to hơn nữa */
+  text-align: center;       /* ⚡ CĂN GIỮA CHỮ: Giúp chữ Đăng nhập và Đăng ký nằm chính giữa nút */
   
-    border-radius: 25px;
+  border-radius: 25px;
+  font-size: 13px;
+  text-decoration: none;
+  transition: 0.25s;
+  display: inline-block;    /* Đảm bảo nhận thuộc tính min-width */
   
-    background: #111;
-    color: white;
-  
-    font-size: 13px;
-  
-    text-decoration: none;
-  
-    transition: 0.25s;
-  }
-  
-  .login-button:hover {
-    background: #333;
-  }
-  
-  
+  background-color: transparent;
+  color: #111;
+  border: 1px solid #111;
+}
+
+/* Hiệu ứng hover (di chuột): Cả 2 nút cùng đổi từ trắng sang đen mượt mà */
+.login-button:hover, .register-button:hover {
+  background-color: #111;
+  color: #fff;
+  border-color: #111;
+}
+
   /* =========================
      MOBILE
   ========================= */

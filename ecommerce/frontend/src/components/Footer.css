@@ -1,0 +1,108 @@
+/* Tổng thể footer */
+.site-footer {
+    background-color: #1a1a1a;
+    color: #ccc;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 50px 0 20px 0;
+    margin-top: auto; /* Giúp đẩy dính đáy nếu dùng với flex cha */
+    font-size: 14px;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+  /* Khung chứa các cột */
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 20px;
+    padding: 0 15px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 15px;
+  }
+  
+  /* Từng cột nội dung */
+  .footer-column {
+    flex: 1;
+    min-width: 0;
+    min-width: 220px; /* Tự rớt dòng trên màn hình điện thoại nhỏ */
+  }
+  
+  /* Style tên Logo ở footer */
+  .footer-logo {
+    color: #fff;
+    font-size: 22px;
+    margin-bottom: 15px;
+    font-weight: 700;
+  }
+  .footer-logo span {
+    color: #007bff; /* Điểm nhấn màu xanh cho chữ Shop */
+  }
+  
+  .footer-desc {
+    line-height: 1.6;
+    color: #aaa;
+  }
+  
+  /* Style tiêu đề các cột */
+  .footer-column h4 {
+    color: #fff;
+    font-size: clamp(16px, 1.2vw, 18px);
+    margin-bottom: 20px;
+    position: relative;
+    text-transform: uppercase;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  
+  /* Dấu gạch nhỏ dưới tiêu đề cột */
+  .footer-column h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 35px;
+    height: 2px;
+    background-color: #007bff;
+  }
+  
+  /* Style danh sách liên kết */
+  .footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-column ul li {
+    margin-bottom: 12px;
+  }
+  
+  .footer-column ul li a {
+    color: #aaa;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  /* Hiệu ứng đổi màu và đẩy nhẹ khi di chuột vào link */
+  .footer-column ul li a:hover {
+    color: #fff;
+    padding-left: 5px;
+  }
+  
+  /* Thông tin liên hệ cột 4 */
+  .contact-info {
+    margin-bottom: 10px;
+    color: #aaa;
+  }
+  
+  /* Phần bản quyền dưới cùng */
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 40px auto 0 auto;
+    padding: 20px 20px 0 20px;
+    border-top: 1px solid #333;
+    text-align: center;
+    color: #777;
+    font-size: 13px;
+  }
+  
