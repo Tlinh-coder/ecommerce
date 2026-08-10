@@ -229,3 +229,15 @@
       padding: 60px 6%;
     }
   }
+  /* Trạng thái khi ô Danh mục được chọn kích hoạt lọc */
+.category-item.active {
+  border-color: #111;       /* Đổi viền sang màu đen đậm chủ đạo */
+  background-color: #111;   /* Đổi nền sang màu đen */
+  color: #fff;              /* Chữ biến thành màu trắng */
+  transform: translateY(-3px); /* Nhấc nhẹ ô lên */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.category-item.active h3 {
+  color: #fff;
+}

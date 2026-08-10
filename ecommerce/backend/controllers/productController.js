@@ -1,12 +1,24 @@
 const Product = require("../models/Product");
+
 const getAllProducts = async (req, res) => {
     try {
-        const products = await Product.find().populate("category");
+        // 1. Tạo một đối tượng điều kiện trống
+        let filter = {};
+
+        // 2. Kiểm tra xem Frontend có truyền ID danh mục lên qua URL dạng (?category=...) không
+        if (req.query.category) {
+            filter.category = req.query.category; // Thêm điều kiện lọc theo ID danh mục
+        }
+
+        // 3. Đưa đối tượng filter vào lệnh tìm kiếm
+        const products = await Product.find(filter).populate("category");
+        
         res.json(products);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 }
+
 const getProductById = async (req, res) => {
     try {
         const product = await Product.findById(req.params.id).populate("category");

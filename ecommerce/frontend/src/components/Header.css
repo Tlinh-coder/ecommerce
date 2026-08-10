@@ -144,3 +144,35 @@
     }
   
   }
+  /* Khung chứa toàn bộ actions (tìm kiếm, giỏ hàng, đăng nhập, đăng ký) */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;           /* Khoảng cách giữa các icon và cụm nút */
+  flex-wrap: nowrap;   /* ⚡ KHÓA CỨNG: Tuyệt đối không cho phép các thành phần rớt dòng */
+}
+
+/* Khung bọc riêng 2 nút Đăng nhập và Đăng ký */
+.auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;            /* Khoảng cách nhỏ vừa phải giữa 2 nút */
+  flex-wrap: nowrap;   /* ⚡ KHÓA CỨNG: Ép Đăng nhập và Đăng ký luôn đi liền một hàng */
+}
+
+/* Định cấu hình lại cho cả 2 nút bấm */
+.login-button, .register-button {
+  display: inline-block;
+  white-space: nowrap; /* ⚡ QUAN TRỌNG: Cấm chữ "Đăng ký", "Đăng nhập" tự bẻ đôi dòng */
+  
+  /* Sử dụng hàm clamp để font chữ tự động thu nhỏ lại một chút khi màn hình quá bé */
+  font-size: clamp(11px, 1vw, 13px); 
+  
+  /* Bạn có thể giữ nguyên chiều rộng tối thiểu đã làm ở bước trước */
+  min-width: clamp(85px, 8vw, 110px); 
+  padding: 10px 0;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: 0.25s;
+  text-align: center;
+}
