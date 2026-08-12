@@ -6,6 +6,8 @@ import Register from "../pages/Register";
 import ProductDetail from "../pages/ProductDetail";
 import Profile from "../pages/Profile";
 import Admin from "../pages/Admin";
+import Cart from "../pages/Cart";
+import Checkout from "../pages/Checkout";
 
 function AppRoutes() {
   return (
@@ -21,6 +23,10 @@ function AppRoutes() {
       <Route path="/profile" element={<Profile />} />
 
       <Route path="/admin" element={<Admin />} />
+
+      <Route path="/cart" element={<Cart />} />
+
+      <Route path="/checkout" element={<Checkout />} />
     </Routes>
   );
 }

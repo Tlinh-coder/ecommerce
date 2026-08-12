@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { addToDBCart } from "../services/api"; // Hàm kết nối MongoDB cổng 8080
 import "./ProductCard.css";
 
 function ProductCard({ product }) {
@@ -12,37 +13,27 @@ function ProductCard({ product }) {
       ? product.price - (product.price * product.discount) / 100
       : product.price;
 
-  const handleAddToCart = (e) => {
-    e.preventDefault(); // 🛑 Ngăn chặn hành vi click thẻ Link làm chuyển hướng trang
-    
-    // Tạo cấu trúc một món đồ bỏ vào giỏ
-    const cartItem = {
-      _id: product._id,
-      name: product.name,
-      price: discountPrice, // Lưu giá sau khi đã giảm
-      thumbnail: product.thumbnail || "https://placehold.co/600x600?text=No+Image",
-      quantity: 1 // Mặc định bấm ngoài card là thêm 1 sản phẩm
-    };
-
-    // Lấy giỏ hàng hiện tại trong máy ra (nếu chưa có thì tạo mảng rỗng)
-    let cart = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
-
-    // Kiểm tra xem sản phẩm này đã nằm trong giỏ hàng từ trước chưa
-    const existingItemIndex = cart.findIndex((item) => item._id === product._id);
-
-    if (existingItemIndex > -1) {
-      // Nếu có rồi thì tăng số lượng lên 1
-      cart[existingItemIndex].quantity += 1;
-    } else {
-      // Nếu chưa có thì đẩy món mới này vào mảng
-      cart.push(cartItem);
+  
+  const handleAddToCart = async (e) => {
+    e.preventDefault(); 
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("Vui lòng đăng nhập tài khoản trước khi thêm sản phẩm vào giỏ hàng!");
+      return;
     }
 
-    // Ghi đè giỏ hàng mới cập nhật lại vào localStorage
-    localStorage.setItem("cart", JSON.stringify(cart));
-    
-    alert(`Đã thêm ${product.name} vào giỏ hàng!`);
-    window.dispatchEvent(new Event("storage")); 
+    try {
+     
+      const updatedCartData = await addToDBCart(product._id, 1);
+      
+      alert(`Đã thêm ${product.name} vào giỏ hàng tài khoản thành công!`);
+      
+      
+      window.dispatchEvent(new Event("cartUpdate")); 
+    } catch (error) {
+      console.error("Lỗi thêm giỏ hàng Database:", error);
+      alert("Có lỗi xảy ra: " + (error.response?.data?.message || "Không thể kết nối đến server"));
+    }
   };
 
   return (
@@ -53,7 +44,7 @@ function ProductCard({ product }) {
         )}
 
         <img
-          src={product.thumbnail || "https://placehold.co/600x600?text=No+Image"}
+          src={product.thumbnail || "https://placehold.co"}
           alt={product.name}
           className="product-image"
         />
@@ -68,7 +59,7 @@ function ProductCard({ product }) {
           ♡
         </button>
 
-        {/* ⚡ NÚT THÊM VÀO GIỎ HÀNG HIỆN ĐẠI (ẨN DƯỚI ẢNH, HOVER MỚI HIỆN) */}
+        {/* NÚT THÊM VÀO GIỎ HÀNG OVERLAY */}
         <button 
           className="add-to-cart-overlay-btn" 
           onClick={handleAddToCart}

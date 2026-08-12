@@ -1,0 +1,227 @@
+/* Bao phủ toàn bộ trang Admin */
+.admin-page {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background-color: #fafafa;
+  }
+  
+  .admin-title {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #111;
+    letter-spacing: -0.5px;
+  }
+  
+  /* Khung form tổng thể: Nền trắng, bo góc mượt */
+  .admin-product-form {
+    background: #ffffff;
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+  }
+  
+  .admin-product-form h3 {
+    margin-top: 0;
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    color: #111;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+  }
+  
+  /* ⚡ CHIA LƯỚI 2 CỘT: Ép các ô input xếp hàng song song cực gọn */
+  .admin-grid-inputs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 24px;
+  }
+  
+  .admin-input-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Các ô chiếm 100% chiều ngang như ảnh đại diện và textarea */
+  .admin-input-group.comprehensive {
+    margin-top: 20px;
+  }
+  
+  .admin-input-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 8px;
+  }
+  
+  /* ⚡ ĐỒNG BỘ APPLE: Thiết kế ô gõ chữ mượt giống hệt thanh tìm kiếm */
+  .admin-input-group input, 
+  .admin-input-group select, 
+  .admin-input-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    background-color: #f5f5f7; /* Màu xám kem Apple dịu mắt giống ô search */
+    border: 1px solid transparent; /* Giấu viền đen thô cũ */
+    border-radius: 10px;       /* Bo góc mịn màng */
+    font-size: 14px;
+    color: #111;
+    outline: none;
+    box-sizing: border-box;
+    transition: all 0.25s ease;
+  }
+  
+  /* Hiệu ứng khi click chuột vào ô gõ chữ */
+  .admin-input-group input:focus, 
+  .admin-input-group select:focus, 
+  .admin-input-group textarea:focus {
+    background-color: #ffffff;
+    border-color: #111111;     /* Hiện viền đen mảnh sang trọng */
+    box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.04); /* Đổ bóng nhẹ tinh tế */
+  }
+  
+  /* Tinh chỉnh cho dòng chữ mờ placeholder */
+  .admin-input-group input::placeholder, 
+  .admin-input-group textarea::placeholder {
+    color: #999;
+  }
+  
+  /* Cụm nút xử lý */
+  .admin-form-buttons-wrapper {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+  }
+  
+  /* ⚡ NÚT ĐĂNG SẢN PHẨM: Đen tuyền bo tròn 25px chuẩn chỉ */
+  .admin-submit-btn {
+    flex: 1;
+    padding: 14px;
+    background-color: #111111;
+    color: #ffffff;
+    border: 1px solid #111111;
+    border-radius: 25px;       /* Bo tròn dài cao cấp */
+    font-size: 14.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  
+  .admin-submit-btn:hover {
+    background-color: #ffffff;
+    color: #111111; /* Đổi màu nghịch đảo mượt mà */
+  }
+  
+  .admin-submit-btn:disabled {
+    background-color: #ccc;
+    border-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+  }
+  
+  .admin-cancel-edit-btn {
+    padding: 14px 24px;
+    background-color: transparent;
+    color: #666;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  
+  .admin-cancel-edit-btn:hover {
+    background-color: #f5f5f7;
+    color: #111;
+  }
+  
+  /* Khối quản lý danh sách sản phẩm bên dưới */
+  .admin-products-management-list {
+    margin-top: 40px;
+    background: #ffffff;
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+  }
+  
+  .admin-products-management-list h3 {
+    margin-top: 0;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  
+  .admin-table-wrapper {
+    overflow-x: auto;
+  }
+  
+  .admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 13.5px;
+  }
+  
+  .admin-table th, .admin-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .admin-table th {
+    background-color: #f5f5f7;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .admin-table-img {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 8px;
+    background: #f5f5f7;
+  }
+  
+  .admin-table-name-cell {
+    font-weight: 600;
+    color: #111;
+    max-width: 220px;
+  }
+  
+  .admin-table-actions {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .admin-table-actions button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .action-btn-edit {
+    background-color: #e8f4fd;
+    color: #007bff;
+  }
+  
+  .action-btn-edit:hover {
+    background-color: #007bff;
+    color: #ffffff;
+  }
+  
+  .action-btn-delete {
+    background-color: #fde8e8;
+    color: #dc3545;
+  }
+  
+  .action-btn-delete:hover {
+    background-color: #dc3545;
+    color: #ffffff;
+  }
+  

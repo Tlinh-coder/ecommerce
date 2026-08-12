@@ -1,0 +1,183 @@
+.checkout-page {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    font-family: 'Segoe UI', sans-serif;
+    min-height: 70vh;
+  }
+  
+  .checkout-page-title {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #111;
+  }
+  
+  .checkout-container {
+    display: flex;
+    gap: 50px;
+    align-items: flex-start;
+  }
+  
+  .checkout-form {
+    flex: 1.4;
+    background: #fff;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+  }
+  
+  .checkout-form h3, .checkout-summary-box h3 {
+    margin-top: 0;
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: #111;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 12px;
+  }
+  
+  .checkout-input-group {
+    margin-bottom: 22px;
+  }
+  
+  .checkout-input-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  
+  .checkout-input-group input[type="text"],
+  .checkout-input-group input[type="tel"] {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.25s;
+  }
+  
+  .checkout-input-group input:focus {
+    border-color: #111;
+  }
+  
+  /* Custom phương thức thanh toán dạng Radio Box */
+  .payment-methods-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .payment-method-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .payment-method-option input[type="radio"] {
+    accent-color: #111; /* Đổi màu chấm chọn sang màu đen đồng bộ */
+    margin: 0;
+    width: 18px;
+    height: 18px;
+  }
+  
+  .payment-method-option span {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  /* Khối tóm tắt hóa đơn bên phải */
+  .checkout-summary-box {
+    flex: 1;
+    background: #fdfdfd;
+    padding: 30px;
+    border-radius: 14px;
+    border: 1px solid #eee;
+  }
+  
+  .checkout-products-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  
+  .checkout-product-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14.5px;
+  }
+  
+  .product-item-left {
+    display: flex;
+    gap: 10px;
+    color: #111;
+  }
+  
+  .product-item-qty {
+    font-weight: 700;
+    color: #666;
+  }
+  
+  .product-item-name {
+    font-weight: 500;
+  }
+  
+  .product-item-price {
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .checkout-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #eee;
+    margin-top: 25px;
+    padding-top: 20px;
+    font-weight: 700;
+    font-size: 15px;
+  }
+  
+  .checkout-final-price {
+    font-size: 22px;
+    color: #ff3b30; /* Giá tiền tổng hóa đơn màu đỏ rực tạo điểm nhấn */
+  }
+  
+  /* Nút đặt hàng lớn kế thừa style */
+  .confirm-order-btn {
+    width: 100%;
+    padding: 14px;
+    background: #111;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.25s;
+  }
+  
+  .confirm-order-btn:hover {
+    background: #333;
+  }
+  
+  .checkout-loading {
+    text-align: center;
+    padding: 100px;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  

@@ -26,12 +26,13 @@ function Login() {
 
       // Nếu Backend trả về thành công (success: true)
       if (response.data.success||response.status === 200) {
-        alert("Đăng nhập thành công!");
+
         
         // Lưu token xác thực và thông tin user vào bộ nhớ trình duyệt (localStorage)
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('user', JSON.stringify(response.data.user));
-
+        alert(" Đăng nhập thành công! Chào mừng bạn quay trở lại LinhTran-Shop!");
+        window.dispatchEvent(new Event("cartUpdate"));
         // Chuyển hướng người dùng về trang chủ
         navigate('/');
         

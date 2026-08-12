@@ -6,15 +6,37 @@
   
   html {
     scroll-behavior: smooth;
+    box-sizing: border-box;
+  }
+  *,*::before,*::after {
+    box-sizing: inherit;
   }
   
   body {
     margin: 0;
+    padding: 0;
     font-family: Arial, Helvetica, sans-serif;
     background: #ffffff;
     color: #111111;
+    -webkit-font-smoothing: antialiased;
+  }
+  .App {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  main{
+    flex: 1 0 auto;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    box-sizing: border-box;
   }
   
+  #products-section {
+  scroll-margin-top: 80px;
+  }
   button,
   input {
     font-family: inherit;

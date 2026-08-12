@@ -1,11 +1,30 @@
 import React from 'react';
-import './Footer.css'; // Đảm bảo bạn tạo file Footer.css chung thư mục
+import { useNavigate } from 'react-router-dom';
+import './Footer.css'; 
 
 function Footer() {
+  const navigate = useNavigate();
+
+  const handleFooterNavClick = (e, sectionId, isHome = false) => {
+    e.preventDefault();
+    
+    navigate("/"); 
+
+    setTimeout(() => {
+      if (isHome) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    }, 50);
+  };
+
   return (
     <footer className="site-footer">
       <div className="footer-container">
-        {/* Cột 1: Giới thiệu */}
         <div className="footer-column">
           <h3 className="footer-logo">LinhTran<span>Shop</span></h3>
           <p className="footer-desc">
@@ -13,18 +32,28 @@ function Footer() {
           </p>
         </div>
 
-        {/* Cột 2: Đường dẫn nhanh */}
         <div className="footer-column">
           <h4>Mua sắm</h4>
           <ul>
-            <li><a href="#">Trang chủ</a></li>
-            <li><a href="#">Sản phẩm</a></li>
-            <li><a href="#">Danh mục</a></li>
+            <li>
+              <a href="#home-section" onClick={(e) => handleFooterNavClick(e, "home-section", true)}>
+                Trang chủ
+              </a>
+            </li>
+            <li>
+              <a href="#products-section" onClick={(e) => handleFooterNavClick(e, "products-section")}>
+                Sản phẩm
+              </a>
+            </li>
+            <li>
+              <a href="#category-section" onClick={(e) => handleFooterNavClick(e, "category-section")}>
+                Danh mục
+              </a>
+            </li>
             <li><a href="#">Khuyến mãi</a></li>
           </ul>
         </div>
 
-        {/* Cột 3: Hỗ trợ */}
         <div className="footer-column">
           <h4>Hỗ trợ khách hàng</h4>
           <ul>
@@ -35,7 +64,6 @@ function Footer() {
           </ul>
         </div>
 
-        {/* Cột 4: Liên hệ */}
         <div className="footer-column">
           <h4>Liên hệ với chúng tôi</h4>
           <p className="contact-info">📍 Địa chỉ: Quận 1, TP. Hồ Chí Minh</p>
@@ -44,7 +72,6 @@ function Footer() {
         </div>
       </div>
 
-      {/* Dòng bản quyền phía dưới cùng */}
       <div className="footer-bottom">
         <p>© 2026 LinhTran-Shop. All rights reserved. Designed by Linh.</p>
       </div>
