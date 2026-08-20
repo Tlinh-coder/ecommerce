@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getDBUserCart, createOrder } from '../services/api';
+import { getDBUserCart, createOrder,createVNPayPayment } from '../services/api';
 import './Checkout.css';
 
 function Checkout() {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
   
-  // Các state lưu thông tin Form nhập liệu khớp chuẩn Backend của bạn
   const [receiverName, setReceiverName] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
@@ -19,7 +18,6 @@ function Checkout() {
     const loadCheckoutData = async () => {
       try {
         const data = await getDBUserCart();
-        // Nếu giỏ hàng trống rỗng, không cho ở lại trang thanh toán
         if (!data.products || data.products.length === 0) {
           alert("Giỏ hàng của bạn đang trống!");
           navigate('/cart');
@@ -46,31 +44,73 @@ function Checkout() {
 
   const handlePlaceOrder = async (e) => {
     e.preventDefault();
+
     try {
-      const orderData = {
-        receiverName,
-        phone,
-        address,
-        paymentMethod
-      };
+        const orderData = {
+            receiverName,
+            phone,
+            address,
+            paymentMethod
+        };
 
-      const response = await createOrder(orderData);
+        const response = await createOrder(orderData);
 
-      if (response.success) {
-        alert(`🎉 Đặt hàng thành công! Mã đơn hàng của bạn là: ${response.orderCode}`);
-        
-        // Phát sự kiện ép thanh Header reset số đếm giỏ hàng về 0 lập tức
-        window.dispatchEvent(new Event("cartUpdate"));
-        
-        // Chuyển hướng người dùng về trang chủ (hoặc trang lịch sử đơn hàng sau này)
-        navigate('/');
+        if (!response.success) {
+            throw new Error(
+                response.message || "Không thể tạo đơn hàng"
+            );
+        }
+
+        window.dispatchEvent(
+            new Event("cartUpdate")
+        );
+
+
+        // COD
+
+        if (paymentMethod === "COD") {
+            alert(
+                `Đặt hàng thành công! Mã đơn hàng: ${response.orderCode}`
+            );
+
+            navigate("/");
+            return;
+        }
+
+
+        // VNPAY
+
+        if (paymentMethod === "VNPAY") {
+
+            const paymentResponse =
+                await createVNPayPayment(
+                    response.orderId
+                );
+                console.log("VNPAY RESPONSE:", paymentResponse);
+            if (paymentResponse.success) {
+
+                window.location.href =
+                    paymentResponse.paymentUrl;
+
+            } else {
+                throw new Error(
+                    "Không thể tạo thanh toán VNPAY"
+                );
+            }
+        }
+
+      } catch (error) {
+        console.error("===== CREATE ORDER ERROR =====");
+        console.log("STATUS:", error.response?.status);
+        console.log("DATA:", error.response?.data);
+        console.log("REQUEST:", error.config?.data);
+      
+        alert(
+          error.response?.data?.message ||
+          "Có lỗi xảy ra khi tạo đơn hàng!"
+        );
       }
-    } catch (error) {
-      console.error(error);
-      alert(error.response?.data?.message || "Có lỗi xảy ra khi tạo đơn hàng!");
     }
-  };
-
   const formatPrice = (price) => {
     return new Intl.NumberFormat("vi-VN").format(price) + " ₫";
   };
@@ -137,11 +177,11 @@ function Checkout() {
                 <input 
                   type="radio" 
                   name="payment" 
-                  value="BANKING" 
-                  checked={paymentMethod === 'BANKING'} 
-                  onChange={() => setPaymentMethod('BANKING')} 
+                  value="VNPAY" 
+                  checked={paymentMethod === 'VNPAY'} 
+                  onChange={() => setPaymentMethod('VNPAY')} 
                 />
-                <span>Chuyển khoản ngân hàng (Banking)</span>
+                <span>Chuyển khoản ngân hàng (VNPay-Banking)</span>
               </label>
             </div>
           </div>

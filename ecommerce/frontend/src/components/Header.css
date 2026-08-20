@@ -18,9 +18,6 @@
   justify-content: space-between;
 }
 
-/* =========================
-   LOGO
-========================= */
 .logo {
   font-size: 24px;
   font-weight: 700;
@@ -29,9 +26,6 @@
   letter-spacing: -1px;
 }
 
-/* =========================
-   NAV (Gạch chân khi ấn)
-========================= */
 .header-nav {
   display: flex;
   gap: 35px;
@@ -73,14 +67,12 @@
   to { transform: scaleX(1); opacity: 1; }
 }
 
-/* =========================
-   ACTIONS & TÌM KIẾM
-========================= */
+
 .header-actions {
   display: flex;
   align-items: center;
   gap: 15px;
-  flex-wrap: nowrap; /* Khóa cứng hàng ngang hành động */
+  flex-wrap: nowrap; 
 }
 
 .search-form {
@@ -135,9 +127,7 @@
   color: #111111;
 }
 
-/* =========================
-   GIỎ HÀNG & BADGE ĐỎ
-========================= */
+
 .header-icon-cart-wrapper {
   background: transparent;
   border: none;
@@ -175,10 +165,6 @@
   z-index: 10;
 }
 
-/* =========================
-   CỤM NÚT TÀI KHOẢN & LOGGED IN
-========================= */
-/* Khung bọc ngoài cùng: Ép Đăng nhập/Đăng ký không rớt dòng */
 .auth-buttons {
   display: flex;
   align-items: center;
@@ -186,7 +172,7 @@
   flex-wrap: nowrap !important; 
 }
 
-/* Khung bọc khi đã đăng nhập: Ép Lời chào + Admin + Đăng xuất thẳng hàng */
+
 .user-logged-in-wrapper {
   display: flex;
   align-items: center;
@@ -195,10 +181,10 @@
 }
 
 .user-welcome-text {
-  font-size: clamp(12px, 1.2vw, 15px); /* Co chữ nhỏ lại thông minh */
+  font-size: clamp(12px, 1.2vw, 15px); 
   color: #555;
   font-weight: 500;
-  white-space: nowrap; /* Cấm bẻ đôi chữ lời chào */
+  white-space: nowrap; 
 }
 
 .user-welcome-text span {
@@ -206,20 +192,20 @@
   font-weight: 600;
 }
 
-/* Kiểu dáng chung cho tất cả các nút bấm trên Header */
+
 .login-button, .register-button, .logout-button, .admin-shortcut-btn {
   display: inline-block;
-  white-space: nowrap; /* Khóa cứng chữ trong nút */
+  white-space: nowrap; 
   text-align: center;
   border-radius: 25px;
-  font-size: clamp(11px, 1vw, 13px); /* Tự nhỏ cỡ chữ khi màn hình bé */
-  padding: 8px 14px; /* Thu hẹp padding hợp lý */
+  font-size: clamp(11px, 1vw, 13px); 
+  padding: 8px 14px; 
   text-decoration: none;
   transition: 0.25s;
   box-sizing: border-box;
 }
 
-/* Nút Đăng nhập & Đăng ký mặc định */
+
 .login-button, .register-button {
   background-color: transparent;
   color: #111;
@@ -232,7 +218,7 @@
   border-color: #111;
 }
 
-/* Nút Đăng xuất */
+
 .logout-button {
   background-color: transparent;
   color: #c62828;
@@ -245,7 +231,7 @@
   box-shadow: 0 2px 8px rgba(198, 40, 40, 0.2);
 }
 
-/* Nút Quản trị Admin */
+
 .admin-shortcut-btn {
   background-color: #f1f1f3;
   color: #333333;
@@ -259,14 +245,12 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* =========================
-   MOBILE RESPONSIVE
-========================= */
+
 @media (max-width: 800px) {
   .header-container {
     padding: 0 20px;
   }
   .header-nav {
-    display: none; /* Ẩn menu điều hướng chữ trên mobile */
+    display: none; 
   }
 }

@@ -228,8 +228,8 @@ function ProductDetail() {
           <div className="detail-stock">
 
             {product.status === "AVAILABLE"
-              ? "✓ Còn hàng"
-              : "✕ Hết hàng"}
+              ? "Còn hàng"
+              : "Hết hàng"}
 
           </div>
 

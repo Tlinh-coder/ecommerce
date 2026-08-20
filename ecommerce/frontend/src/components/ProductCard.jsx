@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { addToDBCart } from "../services/api"; // Hàm kết nối MongoDB cổng 8080
+import { addToDBCart } from "../services/api"; 
 import "./ProductCard.css";
 
 function ProductCard({ product }) {
@@ -59,13 +59,13 @@ function ProductCard({ product }) {
           ♡
         </button>
 
-        {/* NÚT THÊM VÀO GIỎ HÀNG OVERLAY */}
+
         <button 
           className="add-to-cart-overlay-btn" 
           onClick={handleAddToCart}
-          disabled={product.status !== "AVAILABLE"} // Khóa nút nếu hết hàng
+          disabled={product.status !== "AVAILABLE"} 
         >
-          {product.status === "AVAILABLE" ? "Thêm vào giỏ 🛒" : "Hết hàng"}
+          {product.status === "AVAILABLE" ? "Thêm vào giỏ" : "Hết hàng"}
         </button>
       </div>
 

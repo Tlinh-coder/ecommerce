@@ -3,7 +3,6 @@ const bcrypt = require("bcrypt");
 const { sendOTPEmail } = require("../utils/email");
 const jwt = require("jsonwebtoken");
 
-// 1. ĐĂNG KÝ TÀI KHOẢN
 const register = async (req, res) => {
     try {
         const { username, name, email, password } = req.body;
@@ -37,7 +36,6 @@ const register = async (req, res) => {
     }
 };
 
-// 2. XÁC THỰC EMAIL
 const verifyEmail = async (req, res) => {
     try {
         const { email, otp } = req.body;
@@ -66,7 +64,6 @@ const verifyEmail = async (req, res) => {
     }
 };
 
-// 3. ĐĂNG NHẬP
 const login = async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -105,7 +102,6 @@ const login = async (req, res) => {
     }
 };
 
-// 4. LẤY THÔNG TIN CÁ NHÂN
 const getMe = async (req, res) => {
     try {
         const user = await User.findById(req.user.userId);
@@ -127,7 +123,6 @@ const getMe = async (req, res) => {
     }
 };
 
-// 5. QUÊN MẬT KHẨU
 const forgotPassword = async (req, res) => {
     try {
         const { email } = req.body;
@@ -150,7 +145,7 @@ const forgotPassword = async (req, res) => {
     }
 };
 
-// 6. ĐẶT LẠI MẬT KHẨU
+
 const resetPassword = async (req, res) => {
     try { 
         const { email, otp, newPassword } = req.body;

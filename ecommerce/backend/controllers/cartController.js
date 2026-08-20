@@ -3,13 +3,38 @@ const Cart = require("../models/Cart");
 // 1. LẤY GIỎ HÀNG CỦA USER ĐANG ĐĂNG NHẬP
 const getCart = async (req, res) => {
   try {
-    let cart = await Cart.findOne({ user: req.user.userId }).populate("products.product");
+    let cart = await Cart.findOne({
+      user: req.user.userId
+    }).populate("products.product");
+
     if (!cart) {
-      cart = await Cart.create({ user: req.user.userId, products: [] });
+      cart = await Cart.create({
+        user: req.user.userId,
+        products: []
+      });
+
+      return res.status(200).json(cart);
     }
+
+    // Xóa các sản phẩm không còn tồn tại trong database
+    const validProducts = cart.products.filter(
+      item => item.product !== null
+    );
+
+    // Nếu có sản phẩm lỗi thì cập nhật lại Cart trong MongoDB
+    if (validProducts.length !== cart.products.length) {
+      cart.products = validProducts;
+      await cart.save();
+    }
+
     return res.status(200).json(cart);
+
   } catch (error) {
-    return res.status(500).json({ message: error.message });
+    console.error("Lỗi lấy giỏ hàng:", error);
+
+    return res.status(500).json({
+      message: error.message
+    });
   }
 };
 
@@ -24,7 +49,7 @@ const addToCart = async (req, res) => {
       cart = await Cart.create({ user: userId, products: [] });
     }
 
-    const itemIndex = cart.products.findIndex(p => p.product.toString() === productId);
+    const itemIndex = cart.products.findIndex(p =>p.product && p.product.toString() === productId);
 
     if (itemIndex > -1) {
       cart.products[itemIndex].quantity += Number(quantity);
@@ -49,7 +74,7 @@ const removeFromCart = async (req, res) => {
     let cart = await Cart.findOne({ user: userId });
     if (!cart) return res.status(404).json({ message: "Không tìm thấy giỏ hàng" });
 
-    cart.products = cart.products.filter(p => p.product.toString() !== productId);
+    cart.products = cart.products.filter(p =>p.product && p.product.toString() !== productId);
     
     await cart.save();
     const updatedCart = await cart.populate("products.product");

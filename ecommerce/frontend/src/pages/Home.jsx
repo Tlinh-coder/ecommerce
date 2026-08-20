@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom"; // ⚡ 1. Bổ sung useLocation để bắt từ khóa trên URL
+import { useLocation, useNavigate } from "react-router-dom"; 
 import { getAllProducts, getAllCategories, getProductsByCategory } from "../services/api";
 import ProductCard from "../components/ProductCard";
-import axios from "axios"; // Bổ sung axios để gọi API tìm kiếm
+import axios from "axios";
 import "./Home.css";
 
 function Home() {
@@ -11,10 +11,10 @@ function Home() {
   const [selectedCategory, setSelectedCategory] = useState(null); 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  const location = useLocation(); 
 
-  const location = useLocation(); // Lấy thông tin URL hiện tại của trình duyệt
-
-  // 1. Tự động tải danh sách Danh mục một lần duy nhất khi mở trang
+  // 1. LẤY DANH SÁCH DANH MỤC KHI TẢI TRANG
   useEffect(() => {
     const fetchCategoriesData = async () => {
       try {
@@ -27,26 +27,29 @@ function Home() {
     fetchCategoriesData();
   }, []);
 
-  // 2. ⚡ LẮNG NGHE SỰ KIỆN TÌM KIẾM HOẶC TẢI SẢN PHẨM MỚI
+  // 2. LẮNG NGHE URL ĐỂ TẢI SẢN PHẨM PHÙ HỢP
   useEffect(() => {
     const fetchProductsData = async () => {
       setLoading(true);
       setError(null);
 
-      // Đọc tham số ?search=... từ thanh địa chỉ URL của trình duyệt
       const queryParams = new URLSearchParams(location.search);
       const searchParam = queryParams.get("search");
+      const categoryParam = queryParams.get("category");
 
       try {
         if (searchParam) {
-          // Nếu có từ khóa tìm kiếm: Gọi API lọc theo từ khóa sang Backend cổng 8080
           const response = await axios.get(`http://localhost:8080/api/products?search=${encodeURIComponent(searchParam)}`);
           setProducts(response.data);
-          setSelectedCategory(null); // Hủy trạng thái chọn danh mục nếu đang tìm kiếm toàn sàn
+          setSelectedCategory(null); 
+        } else if (categoryParam) {
+          const data = await getProductsByCategory(categoryParam);
+          setProducts(data);
+          setSelectedCategory(categoryParam);
         } else {
-          // Nếu không có tìm kiếm: Tải tất cả sản phẩm như bình thường
           const data = await getAllProducts();
           setProducts(data);
+          setSelectedCategory(null);
         }
         setLoading(false);
       } catch (err) {
@@ -56,36 +59,14 @@ function Home() {
     };
 
     fetchProductsData();
-  }, [location.search]); // ⚡ Chạy lại hàm này mỗi khi tham số tìm kiếm trên URL thay đổi
+  }, [location.search]); 
 
-  // 3. Hàm xử lý khi người dùng click chọn 1 Danh mục để lọc
-  const handleCategoryClick = async (categoryId) => {
-    setLoading(true);
-    try {
-      if (selectedCategory === categoryId) {
-        const data = await getAllProducts();
-        setProducts(data);
-        setSelectedCategory(null);
-      } else {
-        const data = await getProductsByCategory(categoryId);
-        setProducts(data);
-        setSelectedCategory(categoryId);
-      }
-      setLoading(false);
-    } catch (err) {
-      setError(err.message);
-      setLoading(false);
+  const handleCategoryClick = (categoryId) => {
+    if (selectedCategory === categoryId) {
+      navigate("/"); 
+    } else {
+      navigate(`/?category=${categoryId}`); 
     }
-  };
-
-  // Hàm định nghĩa icon tương ứng cho từng tên danh mục
-  const getCategoryEmoji = (name) => {
-    const lowerName = name.toLowerCase();
-    if (lowerName.includes("thoại") || lowerName.includes("phone")) return "📱";
-    if (lowerName.includes("laptop") || lowerName.includes("máy tính")) return "💻";
-    if (lowerName.includes("đồng hồ") || lowerName.includes("watch")) return "⌚";
-    if (lowerName.includes("kiện") || lowerName.includes("accessory") || lowerName.includes("tai nghe") || lowerName.includes("loa")) return "🎧";
-    return "📦"; 
   };
 
   if (loading && products.length === 0 && categories.length === 0) {
@@ -99,12 +80,21 @@ function Home() {
   return (
     <div className="home">
       {/* HERO SECTION */}
-      <section className="hero" id="home-section"> {/* Đã sửa id đồng bộ với Header */}
+      <section className="hero" id="home-section">
         <div className="hero-content">
           <p className="hero-subtitle">CÔNG NGHỆ MỚI NHẤT</p>
           <h1>Khám phá<br />công nghệ mới.</h1>
           <p className="hero-description">Những sản phẩm công nghệ mới nhất, chính hãng và chất lượng cao.</p>
-          <button className="hero-button">Khám phá sản phẩm</button>
+          <button className="hero-button"
+            onClick={() => {
+              const element = document.getElementById('products-section');
+              if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
+          >
+            Khám phá sản phẩm
+          </button>
         </div>
       </section>
 
@@ -123,7 +113,24 @@ function Home() {
               onClick={() => handleCategoryClick(category._id)}
               style={{ cursor: 'pointer' }}
             >
-              <span>{getCategoryEmoji(category.name)}</span>
+              <div className="category-icon-wrapper">
+                <img 
+                  src={
+                    category.image ? category.image :
+                    category.name.toLowerCase().includes("thoại") || category.name.toLowerCase().includes("phone")
+                      ? "https://cdn-icons-png.flaticon.com/128/644/644458.png"
+                    : category.name.toLowerCase().includes("bảng") || category.name.toLowerCase().includes("tablet")
+                      ? "https://cdn-icons-png.flaticon.com/128/3458/3458780.png"
+                    : category.name.toLowerCase().includes("laptop") || category.name.toLowerCase().includes("máy tính")
+                      ? "https://cdn-icons-png.flaticon.com/128/2888/2888704.png"
+                    : category.name.toLowerCase().includes("kiện") || category.name.toLowerCase().includes("accessory")
+                      ? "https://cdn-icons-png.flaticon.com/128/8488/8488889.png"
+                    : "https://flaticon.com"
+                  } 
+                  alt={category.name} 
+                  className="category-custom-img"
+                />
+              </div>
               <h3>{category.name}</h3>
             </div>
           ))}
@@ -168,7 +175,7 @@ function Home() {
       </section>
 
       {/* FEATURED PRODUCTS SECTION */}
-      <section className="products-section">
+      <section className="products-section" id="featured-products-section" >
         <div className="section-header">
           <p>ĐƯỢC QUAN TÂM</p>
           <h2>Sản phẩm nổi bật</h2>

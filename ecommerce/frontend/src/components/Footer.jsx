@@ -66,9 +66,9 @@ function Footer() {
 
         <div className="footer-column">
           <h4>Liên hệ với chúng tôi</h4>
-          <p className="contact-info">📍 Địa chỉ: Quận 1, TP. Hồ Chí Minh</p>
-          <p className="contact-info">📞 Hotline: 1900 1234</p>
-          <p className="contact-info">✉️ Email: support@linhtran.com</p>
+          <p className="contact-info">Địa chỉ: Quận 1, TP. Hồ Chí Minh</p>
+          <p className="contact-info">Hotline: 1900 1234</p>
+          <p className="contact-info">Email: support@linhtran.com</p>
         </div>
       </div>
 

@@ -1,16 +1,16 @@
-/* Tổng thể footer */
+
 .site-footer {
     background-color: #1a1a1a;
     color: #ccc;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding: 50px 0 20px 0;
-    margin-top: auto; /* Giúp đẩy dính đáy nếu dùng với flex cha */
+    margin-top: auto; 
     font-size: 14px;
     width: 100%;
     overflow-x: hidden;
   }
   
-  /* Khung chứa các cột */
+ 
   .footer-container {
     max-width: 1200px;
     margin: 0 20px;
@@ -21,14 +21,13 @@
     gap: 15px;
   }
   
-  /* Từng cột nội dung */
   .footer-column {
     flex: 1;
     min-width: 0;
-    min-width: 220px; /* Tự rớt dòng trên màn hình điện thoại nhỏ */
+    min-width: 220px; 
   }
   
-  /* Style tên Logo ở footer */
+
   .footer-logo {
     color: #fff;
     font-size: 22px;
@@ -36,7 +35,7 @@
     font-weight: 700;
   }
   .footer-logo span {
-    color: #007bff; /* Điểm nhấn màu xanh cho chữ Shop */
+    color: #007bff; 
   }
   
   .footer-desc {
@@ -44,7 +43,6 @@
     color: #aaa;
   }
   
-  /* Style tiêu đề các cột */
   .footer-column h4 {
     color: #fff;
     font-size: clamp(16px, 1.2vw, 18px);
@@ -55,7 +53,7 @@
     white-space: nowrap;
   }
   
-  /* Dấu gạch nhỏ dưới tiêu đề cột */
+
   .footer-column h4::after {
     content: '';
     position: absolute;
@@ -66,7 +64,7 @@
     background-color: #007bff;
   }
   
-  /* Style danh sách liên kết */
+
   .footer-column ul {
     list-style: none;
     padding: 0;
@@ -83,19 +81,19 @@
     transition: all 0.3s ease;
   }
   
-  /* Hiệu ứng đổi màu và đẩy nhẹ khi di chuột vào link */
+
   .footer-column ul li a:hover {
     color: #fff;
     padding-left: 5px;
   }
   
-  /* Thông tin liên hệ cột 4 */
+
   .contact-info {
     margin-bottom: 10px;
     color: #aaa;
   }
   
-  /* Phần bản quyền dưới cùng */
+
   .footer-bottom {
     max-width: 1200px;
     margin: 40px auto 0 auto;
@@ -106,5 +104,5 @@
     font-size: 13px;
   }
 #products-section, #category-section {
-  scroll-margin-top: 80px; /* Đẩy nội dung xuống 80px để tránh bị che bởi header */
+  scroll-margin-top: 80px; 
 }

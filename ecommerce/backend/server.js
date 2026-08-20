@@ -9,6 +9,7 @@ const authRoutes = require('./routes/authRoutes');
 const carRoutes = require('./routes/cartRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const userRoutes = require('./routes/userRoutes'); 
+const paymentRoutes = require('./routes/paymentRoutes');
 
 connectDB();
 app.use(cors());
@@ -20,6 +21,8 @@ app.use('/api/cart', carRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes); 
+app.use('/api/payment',paymentRoutes);
+
 app.get('/', (req, res) => {
     console.log("Ecommerce API is running");
     res.json({

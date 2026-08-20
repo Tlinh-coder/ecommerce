@@ -7,13 +7,12 @@ const createOrder = async (req, res) => {
         const { receiverName, phone, address, paymentMethod } = req.body;
         const userId = req.user.userId;
 
-        // 1. Tìm giỏ hàng hiện tại của người dùng trong Database
+
         const cart = await Cart.findOne({ user: userId }).populate("products.product");
         if (!cart || cart.products.length === 0) {
             return res.status(400).json({ message: "Giỏ hàng của bạn đang trống, không thể đặt hàng!" });
         }
 
-        // 2. Tính tổng tiền (totalPrice) dựa trên giá thực tế sau khi giảm giá (nếu có)
         let totalPrice = 0;
         cart.products.forEach(item => {
             const finalPrice = item.product.discount > 0
@@ -22,10 +21,10 @@ const createOrder = async (req, res) => {
             totalPrice += finalPrice * item.quantity;
         });
 
-        // 3. Tự động sinh mã đơn hàng (orderCode) ngẫu nhiên (Ví dụ: LT-SHOP-123456)
+
         const orderCode = `LT-${Math.floor(100000 + Math.random() * 900000)}`;
 
-        // 4. Tạo Hóa đơn tổng (Order) khớp chuẩn với các trường trong Model của bạn
+
         const order = await Order.create({
             user: userId,
             orderCode,
@@ -38,7 +37,7 @@ const createOrder = async (req, res) => {
             orderStatus: "PENDING"
         });
 
-        // 5. Tạo các bản ghi chi tiết vật phẩm mua (OrderItem)
+
         const orderItemPromises = cart.products.map(item => {
             const finalPrice = item.product.discount > 0
                 ? item.product.price - (item.product.price * item.product.discount) / 100

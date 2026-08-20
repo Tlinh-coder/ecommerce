@@ -19,8 +19,8 @@ function Header() {
     }
     try {
       const cartData=await getDBUserCart();
-      const products = cartData.products || [];
-      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const productsList = cartData?.products || cartData?.data?.products || [];
+      const totalItems = productsList.reduce((sum, item) => sum + item.quantity, 0);
       setCartCount(totalItems);
     } catch (error) {
       console.error(error);
@@ -55,7 +55,7 @@ function Header() {
   const handleNavClick = (e, sectionId, tabName) => {
     e.preventDefault();
     setClickedTab(tabName);
-    navigate("/"); 
+    navigate({ pathname: "/", search: ""});
     setTimeout(() => {
       if (tabName === "home") {
         window.scrollTo({ top: 0, behavior: "smooth" });

@@ -4,33 +4,31 @@ import axios from 'axios';
 import './Register.css';
 
 function Register() {
-  // ⚡ CÁC STATE LƯU THÔNG TIN ĐĂNG KÝ (Đã đủ cả username và name)
   const [username, setUsername] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   
-  // State phục vụ việc nhập mã OTP xác thực email
   const [isOtpStep, setIsOtpStep] = useState(false); 
   const [otp, setOtp] = useState('');
 
-  // Các state thông báo
+
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
   const navigate = useNavigate();
 
-  // BƯỚC 1: XỬ LÝ ĐĂNG KÝ
+
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage('');
     setSuccessMessage('');
 
     try {
-      // ⚡ ĐÃ BỔ SUNG: Gửi đầy đủ cả username sang Backend của bạn
+   
       const response = await axios.post('http://localhost:8080/api/auth/register', {
-        username: username, // Biến bắt buộc mà bạn đã phát hiện ra
+        username: username, 
         name: name,
         email: email,
         password: password
@@ -38,7 +36,7 @@ function Register() {
 
       if (response.status === 201 || response.data.success) {
         setSuccessMessage(response.data.message);
-        setIsOtpStep(true); // Chuyển sang giao diện nhập OTP
+        setIsOtpStep(true);
       }
     } catch (error) {
       console.error("Lỗi đăng ký cụ thể:", error);
@@ -50,7 +48,7 @@ function Register() {
     }
   };
 
-  // BƯỚC 2: XỬ LÝ XÁC THỰC OTP
+
   const handleVerifyOtpSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage('');
@@ -79,7 +77,7 @@ function Register() {
     <div className="register-page">
       <div className="register-box">
         
-        {/* HIỂN THỊ THÔNG BÁO LỖI / THÀNH CÔNG */}
+
         {errorMessage && (
           <p style={{ color: '#d32f2f', backgroundColor: '#ffebee', padding: '8px', borderRadius: '6px', fontSize: '13px', marginBottom: '15px', fontWeight: '500' }}>
             {errorMessage}
@@ -91,14 +89,14 @@ function Register() {
           </p>
         )}
 
-        {/* GIAO DIỆN 1: FORM ĐĂNG KÝ BAN ĐẦU */}
+
         {!isOtpStep ? (
           <>
             <h2 className="register-title">Tạo Tài Khoản</h2>
             <p className="register-subtitle">Tham gia mua sắm công nghệ cùng LinhTran-Shop</p>
 
             <form onSubmit={handleRegisterSubmit} className="register-form">
-              {/* Ô nhập Username (Khớp hoàn toàn với trường bắt buộc của Backend) */}
+           
               <div className="input-group">
                 <label htmlFor="username">Tên tài khoản (Username)</label>
                 <input 
@@ -111,7 +109,7 @@ function Register() {
                 />
               </div>
 
-              {/* Ô nhập Họ Tên */}
+
               <div className="input-group">
                 <label htmlFor="name">Họ và tên</label>
                 <input 
@@ -124,7 +122,7 @@ function Register() {
                 />
               </div>
 
-              {/* Ô nhập Email */}
+
               <div className="input-group">
                 <label htmlFor="email">Email</label>
                 <input 
@@ -137,7 +135,7 @@ function Register() {
                 />
               </div>
 
-              {/* Ô nhập Mật khẩu */}
+
               <div className="input-group">
                 <label htmlFor="password">Mật khẩu</label>
                 <div className="password-wrapper">
@@ -169,7 +167,7 @@ function Register() {
             </p>
           </>
         ) : (
-          /* GIAO DIỆN 2: FORM NHẬP OTP XÁC THỰC */
+
           <>
             <h2 className="register-title">Xác Thực Email</h2>
             <p className="register-subtitle">Chúng tôi đã gửi mã OTP gồm 6 chữ số đến email <b>{email}</b> của bạn.</p>
